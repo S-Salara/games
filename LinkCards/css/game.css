@@ -1,0 +1,319 @@
+*{
+	margin:0; 
+	padding:0;
+}
+
+html,body{
+	min-width: 1500px;
+	overflow: hidden;
+	height: 100%;
+	font-family: myfont;
+}
+
+#pg{
+	width: 100%;
+	height: 100%;
+	background: url(../img/pg.jpg) no-repeat;
+	background-size: 100% auto;
+	position: relative;
+	
+}
+/* 背景蒙版 */
+#mask{
+	width:100%;
+	height: 100%;
+	-webkit-animation: Shadow 2s;
+	animation-fill-mode:forwards;
+}
+
+/* 字体样式定义 */
+@font-face {
+	font-family: myfont;
+	src: url("../fonts/pangmen.ttf");
+}
+
+#game>h1{
+	padding-top: 200px;
+	text-align: center;
+	font-size: 200px;
+	font-weight: 400;
+	letter-spacing: 20px;
+	-webkit-animation: Header 3s;
+	animation-fill-mode:forwards;
+}
+/* 按钮样式 */
+#begin{
+	cursor: pointer;
+	margin-top: 30px;
+	font-weight: 200;
+	color:#fff;
+	text-align: center;
+	margin: 0 auto;
+	opacity: 0;
+	font-size: 50px;
+	border: 10px double #fff;
+	width: 300px;
+	heigth:100px;
+	line-height: 100px;
+	-webkit-animation: ButtonBegin 1.5s ease 1.5s;
+	animation-fill-mode:forwards;
+}
+
+#begin:hover{
+	text-shadow: 0 0 10px #fff;
+}
+
+#begin:active{
+	color:black;
+	background: #FFFFFF;
+}
+
+
+/* 按钮动画 */
+
+@-webkit-keyframes ButtonBegin{
+	from{
+		
+	}
+	to{
+		opacity: 1;
+		cursor: pointer;
+	}
+}
+
+
+/* 标题变化动画 */
+@-webkit-keyframes Header{
+	from {
+		color:#00a67c;
+        text-shadow: 0 0 20px #fff,
+                     0 0 30px #fff,
+                     0 0 40px #00a67c,
+                     0 0 70px #00a67c,
+                     0 0 80px #00a67c,
+                     0 0 100px #00a67c,
+                     0 0 150px #00a67c;
+    }
+    to {
+		color:#fff;
+        text-shadow: 0 0 20px #fff;
+    }
+}
+
+/* 画面变暗动画 */
+@-webkit-keyframes Shadow{
+	from{
+		background-color: rgba(0,0,0,0);
+	}
+	to{
+		background-color: rgba(0,0,0,0.5);
+	}
+}
+
+#header{
+	height:80px;
+}
+
+#header>label{
+	margin-left: 50px;
+	margin-top: 20px;
+	color:#fff;
+	text-shadow: 0 0 20px #fff,
+	             0 0 30px #fff,
+	             0 0 40px #00a67c,
+	             0 0 70px #00a67c,
+	             0 0 80px #00a67c;
+	float:left;
+	font-size: 50px;
+	
+}
+
+#restart{
+	float:right;
+	margin-right: 50px;
+	margin-top: 20px;
+	font-weight: 200;
+	color:#fff;
+	text-align: center;
+	font-size: 40px;
+	border: 5px solid #fff;
+	width: 200px;
+	heigth:50px;
+	line-height: 50px;
+	cursor: pointer;
+}
+
+#restart:hover{
+	color:black;
+	background: #FFFFFF;
+}
+
+#cards{
+	width:1230px;
+	height:800px;
+	margin: 0 auto;
+	position: relative;
+}
+
+
+.card{
+	position:relative;
+	display: inline-block;
+	border-radius: 15px;
+	width:250px;
+	height:320px;
+	margin:40px 80px;
+	background: url(../img/all.png) no-repeat;
+	background-size:100% 100%;
+	z-index:50;
+}
+
+#obstacle{
+	position:absolute;
+	width:1250px;
+	height:800px;
+	z-index:40;
+}
+
+/* 鼠标从处于未展示的扑克牌进入时 */
+/* 进入动画 */
+@-webkit-keyframes Enter{
+	from{
+		box-shadow: 0 0 10px #fff;
+	}
+	to{
+		box-shadow: 0 0 20px #fff,
+		             0 0 30px #fff,
+		             0 0 40px #00a67c,
+		             0 0 70px #00a67c,
+		             0 0 80px #00a67c;
+	}
+}
+
+.cardBackEnter{
+	-webkit-animation: Enter 1s;
+	animation-fill-mode:forwards;
+	cursor: pointer;
+}
+
+/* 鼠标从处于未展示的扑克牌移出来时 */
+/* 移出动画 */
+@-webkit-keyframes Out{
+	from{
+		box-shadow: 0 0 20px #fff,
+		             0 0 30px #fff,
+		             0 0 40px #00a67c,
+		             0 0 70px #00a67c,
+		             0 0 80px #00a67c;
+	}
+	to{
+		box-shadow: none;
+	}
+}
+
+.cardBackOut{
+	-webkit-animation: Out 1s;
+	animation-fill-mode:forwards;
+}
+
+/* 卡牌旋转出正面 */
+/* 问题:使用animation-fill-mode保持最后的样式时使用另一个旋转动画则最后的状态将不被保留,
+也就是会以之前第一个动画之前的状态作为第二个动画的起始点 */
+@-webkit-keyframes Rotate{
+	from{
+		box-shadow: 0 0 20px #fff,
+		             0 0 30px #fff,
+		             0 0 40px #00a67c,
+		             0 0 70px #00a67c,
+		             0 0 80px #00a67c;
+		-webkit-transform: rotateY(0);
+	}
+	to{
+		box-shadow: 0 0 20px #fff,
+		             0 0 30px #fff,
+		             0 0 40px #00a67c,
+		             0 0 70px #00a67c,
+		             0 0 80px #00a67c;
+		-webkit-transform: rotateY(180deg);
+	}
+}
+
+.cardRotate{
+	-webkit-animation: Rotate 0.6s;
+	animation-fill-mode:forwards;
+}
+
+/* 卡牌旋转回背面 */
+@-webkit-keyframes RotateBack{
+	from{
+		box-shadow: 0 0 20px #fff,
+		             0 0 30px #fff,
+		             0 0 40px #00a67c,
+		             0 0 70px #00a67c,
+		             0 0 80px #00a67c;
+		-webkit-transform: rotateY(180deg);
+	}
+	to{
+		box-shadow: none;
+		-webkit-transform: rotateY(0);
+	}
+}
+
+.cardRotateBack{
+	-webkit-animation: RotateBack 0.6s;
+	animation-fill-mode:forwards;
+}
+
+/* 卡牌消失动画 */
+@-webkit-keyframes Disappear{
+	from{
+		box-shadow:  0 0 20px #fff,
+		             0 0 30px #fff,
+		             0 0 40px #fff,
+		             0 0 60px #00a67c,
+		             0 0 80px #00a67c,
+					 0 0 100px #00a67c,
+					 0 0 120px #00a67c;
+	}
+	to{
+		opacity: 0;
+		box-shadow: none;
+	}
+}
+
+.disappear{
+	-webkit-animation: Disappear 1s;
+	animation-fill-mode:forwards;
+}
+
+#over{
+	padding-top: 200px;
+	padding-bottom: 50px;
+	text-align: center;
+	font-size: 150px;
+	font-weight: 300;
+	color:#FFFFFF;
+	text-shadow: 0 0 20px #fff,
+	             0 0 30px #fff,
+	             0 0 40px #00a67c,
+	             0 0 70px #00a67c,
+	             0 0 80px #00a67c;
+}
+
+#overbutton{
+	font-weight: 200;
+	color:#fff;
+	text-align: center;
+	margin: 0 auto;
+	font-size: 60px;
+	border: 10px solid #fff;
+	width: 300px;
+	heigth:100px;
+	line-height: 100px;
+}
+
+#overbutton:hover{
+	color:black;
+	background: #FFFFFF;
+	cursor: pointer;
+}
